@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/12 19:11:13 (CST) daisuke>
+# Time-stamp: <2022/03/12 19:22:08 (CST) daisuke>
 #
 
 #
@@ -33,10 +33,10 @@ echo "#"
 
 # for each work directory under pkgsrc
 foreach dir_work (/usr/pkgsrc/*/*/work*)
+    # appending package directory name to the list
+    set list_packages = ( ${list_packages} ${dir_work} )
     # package directory (/usr/pkgsrc/*/*)
     set dir_package = $dir_work:h
-    # appending package directory name to the list
-    set list_packages = ( ${list_packages} ${dir_package} )
     # moving to package directory
     cd ${dir_package}
     # cleaning directory
@@ -53,6 +53,6 @@ echo "#"
 echo "# list of cleaned work directories"
 echo "#"
 foreach dir (${list_packages})
-    echo "#   ${dir}/work"
+    echo "#   ${dir}"
 end
 echo "#"
