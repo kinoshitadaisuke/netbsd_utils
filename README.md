@@ -1,27 +1,28 @@
 # netbsd_utils
+
 a set of small utilities for NetBSD operating system
 
-fetching pkgsrc
+## fetching pkgsrc
 
   \# netbsd_pkgsrc_fetch.csh
 
-updating pkgsrc
+## updating pkgsrc
 
   \# netbsd_pkgsrc_update.csh /usr/pkgsrc
 
-cleaning pkgsrc work directories
+## cleaning pkgsrc work directories
 
   \# netbsd_pkgsrc_clean.csh
 
-fetching src and xsrc
+## fetching src and xsrc
 
   \# netbsd_src_fetch.csh
 
-updating src and xsrc
+## updating src and xsrc
 
   \# netbsd_src_update.csh /usr/src /usr/xsrc
 
-building kernel
+## building kernel
 
   \# cd /usr/src/sys/arch/amd64/conf
 
@@ -31,22 +32,22 @@ building kernel
 
   \# netbsd_build_kernel_make.csh /usr/src/sys/arch/amd64/conf/MY_GEN_YYYYMMDD
 
-installing kernel
+## installing kernel
 
   \# netbsd_build_kernel_install.csh /usr/src/sys/arch/amd64/conf/MY_GEN_YYYYMMDD
 
-building kernel modules
+## building kernel modules
 
   \# netbsd_build_modules_make.csh
 
-installing kernel modules
+## installing kernel modules
 
   \# netbsd_build_modules_install.csh
 
-building user-land
+## building user-land
 
   \# netbsd_build_dist_make.csh
 
-installing user-land
+## installing user-land
 
   \# netbsd_build_dist_install.csh
