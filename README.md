@@ -24,8 +24,11 @@ updating src and xsrc
 building kernel
 
   \# cd /usr/src/sys/arch/amd64/conf
+
   \# cp GENERIC MY_GEN_YYYYMMDD
+
   \# vi MY_GEN_YYYYMMDD
+
   \# netbsd_build_kernel_make.csh /usr/src/sys/arch/amd64/conf/MY_GEN_YYYYMMDD
 
 installing kernel
