@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 17:29:35 (CST) daisuke>
+# Time-stamp: <2022/03/13 17:40:53 (CST) daisuke>
 #
 
 #
@@ -68,13 +68,26 @@ set list_packages = ( )
 
 # printing status
 echo "#"
+echo "# now, counting number of work directories to be cleaned..."
+echo "#"
+
+# finding work directories and counting number of work directories
+foreach dir_work (/usr/pkgsrc/*/*/work*)
+    # appending package directory name to the list
+    set list_packages = ( ${list_packages} ${dir_work} )
+end
+
+# printing status
+echo "# finished counting number of work directories to be cleaned!"
+echo "#   there are $#list_packages work directories to be cleaned"
+echo "#"
+
+# printing status
 echo "# now, cleaning pkgsrc work directories..."
 echo "#"
 
 # for each work directory under pkgsrc
-foreach dir_work (/usr/pkgsrc/*/*/work*)
-    # appending package directory name to the list
-    set list_packages = ( ${list_packages} ${dir_work} )
+foreach dir_work ($list_packages)
     # package directory (/usr/pkgsrc/*/*)
     set dir_package = $dir_work:h
     # moving to package directory
@@ -89,7 +102,6 @@ echo "# finished cleaning pkgsrc work directories!"
 echo "#"
 
 # printing list of deleted packages
-echo "#"
 echo "# list of cleaned work directories"
 echo "#"
 foreach dir (${list_packages})
