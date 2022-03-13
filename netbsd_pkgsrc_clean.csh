@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/12 19:22:08 (CST) daisuke>
+# Time-stamp: <2022/03/13 17:29:35 (CST) daisuke>
 #
 
 #
@@ -11,7 +11,8 @@
 #
 #  author: Kinoshita Daisuke
 #
-#  version 1: 12/Mar/2022
+#  version 1.0: 12/Mar/2022
+#  version 1.1: 13/Mar/2022
 #
 
 #
@@ -21,7 +22,46 @@
 #
 
 # command
+set rm   = /bin/rm
 set make = /usr/bin/make
+
+# directories and files
+set dir_tmp    = /tmp
+set file_usage = ${dir_tmp}/netbsd_pkgsrc_clean.$$
+
+# usage message
+cat <<EOF > $file_usage
+netbsd_pkgsrc_clean.csh
+
+ Author: Kinoshita Daisuke (c) 2022
+
+ Usage:
+  -h : print usage
+
+ Examples:
+
+  cleaning pkgsrc work directories
+    % netbsd_pkgsrc_clean.csh
+
+  printing help
+    % netbsd_pkgsrc_clean.csh -h
+
+EOF
+
+# command-line argument analysis
+while ($#argv != 0)
+    switch ($argv[1])
+	# -h option
+	case "-h":
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
+     endsw
+     shift
+end
 
 # making an empty list for cleaned packages
 set list_packages = ( )
