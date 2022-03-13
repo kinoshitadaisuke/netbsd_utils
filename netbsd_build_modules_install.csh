@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 20:01:15 (CST) daisuke>
+# Time-stamp: <2022/03/13 20:09:46 (CST) daisuke>
 #
 
 #
@@ -112,36 +112,6 @@ if (! -d $dir_src) then
     # stopping the script
     exit
 endif
-
-# if dir_objold exists, then remove it
-if (-d $dir_objold) then
-    # printing message
-    echo "# now, deleting directory '$dir_objold'..."
-    echo "#   $rm -f $dir_objold"
-    # deleting dir_objold
-    $rm -f $dir_objold
-    # printing message
-    echo "# finished deleting directory '$dir_objold'!"
-endif
-
-# if dir_obj exists, then rename it to dir_objold
-if (-d $dir_obj) then
-    # printing message
-    echo "# now, renaming directory '$dir_obj' to '$dir_objold'..."
-    echo "#   $mv -f $dir_obj $dir_objold"
-    # renaming directory dir_obj to dir_objold
-    $mv -f $dir_obj $dir_objold
-    # printing message
-    echo "# finished renaming directory '$dir_obj' to '$dir_objold'!"
-endif
-
-# printing message
-echo "# now, making a directory '$dir_obj'..."
-echo "#   $mkdir -p $dir_obj"
-# making directory dir_obj
-$mkdir -p $dir_obj
-# printing message
-echo "# finished making a directory '$dir_obj'!"
 
 # printing message
 echo "# now, changing to directory '$dir_src'..."
