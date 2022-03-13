@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 15:00:07 (CST) daisuke>
+# Time-stamp: <2022/03/13 15:32:26 (CST) daisuke>
 #
 
 #
@@ -27,7 +27,7 @@ set file_usage = ${dir_tmp}/netbsd_pkgsrc_fetch.$$
 
 # usage message
 cat <<EOF > $file_usage
-netbsd_pkgsrc_fetch.csh
+netbsd_pkgsrc_update.csh
 
  Author: Kinoshita Daisuke (c) 2022
 
