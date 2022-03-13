@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 15:03:20 (CST) daisuke>
+# Time-stamp: <2022/03/13 17:51:00 (CST) daisuke>
 #
 
 #
@@ -36,7 +36,7 @@ set rm    = /bin/rm
 set cvs   = /usr/bin/cvs
 
 # directories and files
-set dir_tmp = /tmp
+set dir_tmp    = /tmp
 set file_usage = ${dir_tmp}/netbsd_pkgsrc_fetch.$$
 
 # usage message
@@ -97,11 +97,13 @@ while ($#argv != 0)
 	    # CVS revision
 	    set cvs_revision = $argv[2]
 	    shift
+	    shift
 	    breaksw
 	# -s option
 	case "-s":
 	    # CVS server
 	    set cvs_server = $argv[2]
+	    shift
 	    shift
 	    breaksw
      endsw
@@ -112,19 +114,24 @@ end
 # make directory if "dir_target" does not exist
 if (! -d $dir_target) then
     # printing status
+    echo "#"
     echo "# now, making target directory '$dir_target'..."
+    echo "#"
     # executing mkdir command
     mkdir -p $dir_target
     # printing status
     echo "# finished making target directory '$dir_target'!"
+    echo "#"
 endif
 
 # printing status
 echo "# now, moving to target directory '$dir_target'..."
+echo "#"
 # change to directory "dir_target"
 cd $dir_target
 # printing status
 echo "# finished moving to target directory '$dir_target'!"
+echo "#"
 
 # fetching pkgsrc using cvs command
 if ($cvs_revision == "current") then
@@ -135,6 +142,7 @@ if ($cvs_revision == "current") then
     $cvs -d $cvs_server -q checkout -P pkgsrc
     # printing status
     echo "# finished fetching pkgsrc-current!"
+    echo "#"
 else
     # printing status
     echo "# now, fetching pkgsrc..."
@@ -143,11 +151,14 @@ else
     $cvs -d $cvs_server -q checkout -r $cvs_revision -P pkgsrc
     # printing status
     echo "# finished fetching pkgsrc!"
+    echo "#"
 endif
 
 # printing status
 echo "# now, deleting usage file '$file_usage'..."
+echo "#"
 # deleting usage file
 $rm -f $file_usage
 # printing status
 echo "# finished deleting usage file '$file_usage'!"
+echo "#"
