@@ -3,7 +3,7 @@ a set of small utilities for NetBSD operating system
 
 fetching pkgsrc
 
-  # netbsd_pkgsrc_fetch.csh
+  \# netbsd_pkgsrc_fetch.csh
 
 updating pkgsrc
 
