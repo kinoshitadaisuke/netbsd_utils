@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 15:31:11 (CST) daisuke>
+# Time-stamp: <2022/03/13 17:56:33 (CST) daisuke>
 #
 
 #
@@ -14,6 +14,13 @@
 #  version 1: 13/Mar/2022
 #
 
+#
+# examples:
+#
+#  updating /usr/src and /usr/xsrc
+#    % netbsd_src_update.csh /usr/src /usr/xsrc
+#
+
 # locations of commands
 set rm  = /bin/rm
 set cvs = /usr/bin/cvs
@@ -22,7 +29,7 @@ set cvs = /usr/bin/cvs
 set list_target = ()
 
 # directories and files
-set dir_tmp = /tmp
+set dir_tmp    = /tmp
 set file_usage = ${dir_tmp}/netbsd_pkgsrc_fetch.$$
 
 # usage message
