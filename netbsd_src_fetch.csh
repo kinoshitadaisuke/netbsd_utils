@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 15:20:38 (CST) daisuke>
+# Time-stamp: <2022/03/13 17:55:00 (CST) daisuke>
 #
 
 #
@@ -30,7 +30,8 @@
 
 # default parameters
 set cvs_revision = current
-set cvs_server   = :pserver:anoncvs@anoncvs.NetBSD.org:/cvsroot
+#set cvs_server   = :pserver:anoncvs@anoncvs.NetBSD.org:/cvsroot
+set cvs_server   = :pserver:anoncvs@anoncvs.fr.NetBSD.org:/pub/NetBSD-CVS
 
 # locations of commands
 set mkdir = /bin/mkdir
@@ -38,7 +39,7 @@ set rm    = /bin/rm
 set cvs   = /usr/bin/cvs
 
 # directories and files
-set dir_tmp = /tmp
+set dir_tmp    = /tmp
 set file_usage = ${dir_tmp}/netbsd_src_fetch.$$
 
 # usage message
