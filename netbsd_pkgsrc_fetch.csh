@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 14:09:30 (CST) daisuke>
+# Time-stamp: <2022/03/13 15:03:20 (CST) daisuke>
 #
 
 #
@@ -70,9 +70,9 @@ EOF
 # number of command-line arguments must be 1 or 3 or 5
 if ( ($#argv != 1) && ($#argv != 3) && ($#argv != 5) ) then
     # printing message
-    echo ""
-    echo "number of command-line arguments must be 1 or 3 or 5!"
-    echo ""
+    echo "#"
+    echo "# number of command-line arguments must be 1 or 3 or 5!"
+    echo "#"
     # printing usage
     cat $file_usage
     # deleting usage file
@@ -112,42 +112,42 @@ end
 # make directory if "dir_target" does not exist
 if (! -d $dir_target) then
     # printing status
-    echo "now, making target directory '$dir_target'..."
+    echo "# now, making target directory '$dir_target'..."
     # executing mkdir command
     mkdir -p $dir_target
     # printing status
-    echo "finished making target directory '$dir_target'!"
+    echo "# finished making target directory '$dir_target'!"
 endif
 
 # printing status
-echo "now, moving to target directory '$dir_target'..."
+echo "# now, moving to target directory '$dir_target'..."
 # change to directory "dir_target"
 cd $dir_target
 # printing status
-echo "finished moving to target directory '$dir_target'!"
+echo "# finished moving to target directory '$dir_target'!"
 
 # fetching pkgsrc using cvs command
 if ($cvs_revision == "current") then
     # printing status
-    echo "now, fetching pkgsrc-current..."
-    echo " command = $cvs -d $cvs_server -q checkout -P pkgsrc"
+    echo "# now, fetching pkgsrc-current..."
+    echo "#  command = $cvs -d $cvs_server -q checkout -P pkgsrc"
     # fetching pkgsrc-current
     $cvs -d $cvs_server -q checkout -P pkgsrc
     # printing status
-    echo "finished fetching pkgsrc-current!"
+    echo "# finished fetching pkgsrc-current!"
 else
     # printing status
-    echo "now, fetching pkgsrc..."
-    echo " command = $cvs -d $cvs_server -q checkout -r $cvs_revision -P pkgsrc"
+    echo "# now, fetching pkgsrc..."
+    echo "#  command = $cvs -d $cvs_server -q checkout -r $cvs_revision -P pkgsrc"
     # fetching specified revision of pkgsrc
     $cvs -d $cvs_server -q checkout -r $cvs_revision -P pkgsrc
     # printing status
-    echo "finished fetching pkgsrc!"
+    echo "# finished fetching pkgsrc!"
 endif
 
 # printing status
-echo "now, deleting usage file '$file_usage'..."
+echo "# now, deleting usage file '$file_usage'..."
 # deleting usage file
 $rm -f $file_usage
 # printing status
-echo "finished deleting usage file '$file_usage'!"
+echo "# finished deleting usage file '$file_usage'!"
