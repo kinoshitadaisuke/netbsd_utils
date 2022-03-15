@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 20:27:04 (CST) daisuke>
+# Time-stamp: <2022/03/14 08:32:42 (CST) daisuke>
 #
 
 #
@@ -192,7 +192,9 @@ echo "#"
 echo "# list of built kernels:"
 echo "#"
 foreach path_cfg ($list_cfg)
-    set path_kernel = `echo $file_cfg | $sed s%conf%compile/obj%`/netbsd
+    set path_kernel = `echo $path_cfg | $sed s%conf%compile/obj%`/netbsd
+    echo "# $path_kernel"
     $ls -lF ${path_kernel}
+    echo "#"
 end
 echo "#"
