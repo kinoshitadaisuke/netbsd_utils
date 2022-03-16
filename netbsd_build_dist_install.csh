@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 20:09:18 (CST) daisuke>
+# Time-stamp: <2022/03/16 10:55:03 (CST) daisuke>
 #
 
 #
@@ -92,14 +92,12 @@ while ($#argv != 0)
             # base directory
             set dir_base = $argv[2]
             shift
-	    shift
             breaksw
         # -j option
         case "-j":
             # number of CPU cores to be used
             set ncore = $argv[2]
             shift
-	    shift
             breaksw
      endsw
      shift
