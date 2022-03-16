@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 20:09:46 (CST) daisuke>
+# Time-stamp: <2022/03/16 08:51:15 (CST) daisuke>
 #
 
 #
@@ -96,7 +96,6 @@ while ($#argv != 0)
 	    shift
             breaksw
      endsw
-     shift
 end
 
 # directories
