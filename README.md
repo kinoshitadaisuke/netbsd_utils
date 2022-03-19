@@ -55,3 +55,7 @@ a set of small utilities for NetBSD operating system
 ## copying files if larger
 
   \# netbsd_copy_if_larger.csh /some/where/in/the/disk/*
+
+## processing LaTeX file and making PS and PDF files
+
+  \# netbsd_dolatex.csh foo.tex
