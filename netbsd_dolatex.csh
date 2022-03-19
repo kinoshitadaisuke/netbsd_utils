@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/19 22:57:54 (CST) daisuke>
+# Time-stamp: <2022/03/20 07:36:28 (CST) daisuke>
 #
 
 #
@@ -32,8 +32,10 @@ set gs       = /usr/pkg/bin/gs
 set latex    = /usr/pkg/bin/latex
 set ps2pdfwr = /usr/pkg/bin/ps2pdfwr
 
-# existence check of LaTeX and related commands
+# list of commands
 set list_commands = ( $latex $bibtex $dvips $dvipdfmx $gs $ps2pdfwr )
+
+# existence check of LaTeX and related commands
 foreach command ($list_commands)
     if (! -e $command) then
 	echo "ERROR: command '$command' is not found!"
@@ -152,6 +154,13 @@ foreach file_tex ($list_files)
     set file_ps  = ${file_tex:r}.ps
     set file_pdf = ${file_tex:r}.pdf
 
+    # intermediate files
+    set list_intermediate = ( $file_aux $file_bbl $file_blg \
+				$file_dvi $file_log $file_out )
+
+    # all files
+    set list_all_files = ( $list_intermediate $file_ps $file_pdf )
+    
     # printing information
     if ($verbosity) then
 	echo "#  file names"
@@ -165,49 +174,14 @@ foreach file_tex ($list_files)
 	echo "#   pdf file = $file_pdf"
     endif
 
-    # removing aux file if exists
-    if (-e $file_aux) then
+    # removing intermediate files
+    foreach file_intermediate ($list_intermediate)
 	if ($verbosity) then
-	    echo "#  deleting file '$file_aux'..."
+	    echo "#  deleting file '$file_intermediate'..."
 	endif
-	$rm -f $file_aux
-    endif
-    # removing bbl file if exists
-    if (-e $file_bbl) then
-	if ($verbosity) then
-	    echo "#  deleting file '$file_bbl'..."
-	endif
-	$rm -f $file_bbl
-    endif
-    # removing blg file if exists
-    if (-e $file_blg) then
-	if ($verbosity) then
-	    echo "#  deleting file '$file_blg'..."
-	endif
-	$rm -f $file_blg
-    endif
-    # removing dvi file if exists
-    if (-e $file_dvi) then
-	if ($verbosity) then
-	    echo "#  deleting file '$file_dvi'..."
-	endif
-	$rm -f $file_dvi
-    endif
-    # removing log file if exists
-    if (-e $file_log) then
-	if ($verbosity) then
-	    echo "#  deleting file '$file_log'..."
-	endif
-	$rm -f $file_log
-    endif
-    # removing out file if exists
-    if (-e $file_out) then
-	if ($verbosity) then
-	    echo "#  deleting file '$file_out'..."
-	endif
-	$rm -f $file_out
-    endif
-
+	$rm -f $file_intermediate
+    end
+    
     # latex commands
     set command_latex    = "$latex $file_tex"
     set command_bibtex   = "$bibtex $file_tex"
@@ -233,29 +207,31 @@ EOF
 EOF
     endif
 
-    # making PS and PDF files
-    if ($do_dvipdfmx) then
-	echo "#"
-	echo "# executing '$command_latex'"
-	echo "#"
-	$command_latex
-	$cat <<EOF >> $file_commands
+    # making PS file
+    echo "#"
+    echo "# executing '$command_latex'"
+    echo "#"
+    $command_latex
+    $cat <<EOF >> $file_commands
 #   $command_latex
 EOF
-	echo "#"
-	echo "# executing '$command_latex'"
-	echo "#"
-	$command_latex
-	$cat <<EOF >> $file_commands
+    echo "#"
+    echo "# executing '$command_latex'"
+    echo "#"
+    $command_latex
+    $cat <<EOF >> $file_commands
 #   $command_latex
 EOF
-	echo "#"
-	echo "# executing '$command_dvips'"
-	echo "#"
-	$command_dvips
-	$cat <<EOF >> $file_commands
+    echo "#"
+    echo "# executing '$command_dvips'"
+    echo "#"
+    $command_dvips
+    $cat <<EOF >> $file_commands
 #   $command_dvips
 EOF
+
+    # making PDF file
+    if ($do_dvipdfmx) then
 	echo "#"
 	echo "# executing '$command_dvipdfmx'"
 	echo "#"
@@ -264,27 +240,6 @@ EOF
 #   $command_dvipdfmx
 EOF
     else
-	echo "#"
-	echo "# executing '$command_latex'"
-	echo "#"
-	$command_latex
-	$cat <<EOF >> $file_commands
-#   $command_latex
-EOF
-	echo "#"
-	echo "# executing '$command_latex'"
-	echo "#"
-	$command_latex
-	$cat <<EOF >> $file_commands
-#   $command_latex
-EOF
-	echo "#"
-	echo "# executing '$command_dvips'"
-	echo "#"
-	$command_dvips
-	$cat <<EOF >> $file_commands
-#   $command_dvips
-EOF
 	echo "#"
 	echo "# executing '$command_ps2pdfwr'"
 	echo "#"
@@ -295,30 +250,11 @@ EOF
     endif
 
     # products
-    if (-e $file_aux) then
-	set list_products = ( $list_products $file_aux )
-    endif
-    if (-e $file_bbl) then
-	set list_products = ( $list_products $file_bbl )
-    endif
-    if (-e $file_blg) then
-	set list_products = ( $list_products $file_blg )
-    endif
-    if (-e $file_dvi) then
-	set list_products = ( $list_products $file_dvi )
-    endif
-    if (-e $file_log) then
-	set list_products = ( $list_products $file_log )
-    endif
-    if (-e $file_out) then
-	set list_products = ( $list_products $file_out )
-    endif
-    if (-e $file_ps) then
-	set list_products = ( $list_products $file_ps )
-    endif
-    if (-e $file_pdf) then
-	set list_products = ( $list_products $file_pdf )
-    endif
+    foreach file ($list_all_files)
+	if (-e $file) then
+	    set list_products = ( $list_products $file )
+	endif
+    end
 end
 
 echo "#"
@@ -337,6 +273,7 @@ foreach file ($list_products)
 end
 echo "#"
 
+# removing temporary files
 if (-e $file_commands) then
     $rm -f $file_commands
 endif
