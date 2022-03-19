@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 17:56:33 (CST) daisuke>
+# Time-stamp: <2022/03/19 11:55:46 (CST) daisuke>
 #
 
 #
@@ -70,8 +70,20 @@ while ($#argv != 0)
 	    $rm -f $file_usage
 	    # stop the script
 	    exit
+	case -*:
+	    # printing message
+	    echo ""
+	    echo "ERROR: '$argv[1]' is an invalid option!"
+	    echo ""
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
+	default:
+	    set list_target = ($list_target $argv[1])
      endsw
-     set list_target = ($list_target $argv[1])
      shift
 end
 
