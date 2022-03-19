@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/14 08:32:42 (CST) daisuke>
+# Time-stamp: <2022/03/19 11:56:12 (CST) daisuke>
 #
 
 #
@@ -92,17 +92,27 @@ while ($#argv != 0)
             # base directory
             set dir_base = $argv[2]
             shift
-	    shift
             breaksw
         # -j option
         case "-j":
             # number of CPU cores to be used
             set ncore = $argv[2]
             shift
-	    shift
             breaksw
+	case -*:
+	    # printing message
+	    echo ""
+	    echo "ERROR: '$argv[1]' is an invalid option!"
+	    echo ""
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
+	default:
+	    set list_cfg = ($list_cfg $argv[1])
      endsw
-     set list_cfg = ($list_cfg $argv[1])
      shift
 end
 
