@@ -51,3 +51,7 @@ a set of small utilities for NetBSD operating system
 ## installing user-land
 
   \# netbsd_build_dist_install.csh
+
+## copying files if larger
+
+  \# netbsd_copy_if_larger.csh /some/where/in/the/disk/*
