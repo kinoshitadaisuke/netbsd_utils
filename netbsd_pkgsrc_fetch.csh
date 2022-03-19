@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/13 17:51:00 (CST) daisuke>
+# Time-stamp: <2022/03/19 11:54:23 (CST) daisuke>
 #
 
 #
@@ -97,17 +97,27 @@ while ($#argv != 0)
 	    # CVS revision
 	    set cvs_revision = $argv[2]
 	    shift
-	    shift
 	    breaksw
 	# -s option
 	case "-s":
 	    # CVS server
 	    set cvs_server = $argv[2]
 	    shift
-	    shift
 	    breaksw
+	case -*:
+	    # printing message
+	    echo ""
+	    echo "ERROR: '$argv[1]' is an invalid option!"
+	    echo ""
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
+	default:
+	    set dir_target = $argv[1]
      endsw
-     set dir_target = $argv[1]
      shift
 end
 
