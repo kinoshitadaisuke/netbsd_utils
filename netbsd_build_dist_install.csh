@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/16 10:55:03 (CST) daisuke>
+# Time-stamp: <2022/03/19 12:00:58 (CST) daisuke>
 #
 
 #
@@ -99,6 +99,28 @@ while ($#argv != 0)
             set ncore = $argv[2]
             shift
             breaksw
+	case -*:
+	    # printing message
+	    echo ""
+	    echo "ERROR: '$argv[1]' is an invalid option!"
+	    echo ""
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
+	default:
+	    # printing message
+	    echo ""
+	    echo "ERROR: '$argv[1]' is an invalid argument!"
+	    echo ""
+	    # printing usage
+	    cat $file_usage
+	    # deleting usage file
+	    $rm -f $file_usage
+	    # stop the script
+	    exit
      endsw
      shift
 end
