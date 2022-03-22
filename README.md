@@ -62,4 +62,4 @@ a set of small utilities for NetBSD operating system
 
 ## converting PDF file into multiple image files
 
-  \# netbsd_netbsd_pdf2image.csh foo.pdf
+  \# netbsd_pdf2image.csh foo.pdf
