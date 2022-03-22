@@ -59,3 +59,7 @@ a set of small utilities for NetBSD operating system
 ## processing LaTeX file and making PS and PDF files
 
   \# netbsd_dolatex.csh foo.tex
+
+## converting PDF file into multiple image files
+
+  \# netbsd_netbsd_pdf2image.csh foo.pdf
