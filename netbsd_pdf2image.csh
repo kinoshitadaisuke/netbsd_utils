@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/20 09:53:36 (CST) daisuke>
+# Time-stamp: <2022/03/23 21:00:15 (CST) daisuke>
 #
 
 #
@@ -55,10 +55,10 @@ netbsd_pdf2image.csh
  Examples:
 
   converting PDF file into PNG files
-    % netbsd_dolatex.csh foo.pdf
+    % netbsd_pdf2image.csh foo.pdf
 
   printing help
-    % netbsd_dolatex.csh -h
+    % netbsd_pdf2image.csh -h
 
 EOF
 
