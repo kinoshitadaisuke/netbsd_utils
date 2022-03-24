@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #
-# Time-stamp: <2022/03/20 07:36:28 (CST) daisuke>
+# Time-stamp: <2022/03/24 12:41:33 (CST) daisuke>
 #
 
 #
@@ -150,13 +150,17 @@ foreach file_tex ($list_files)
     set file_blg = ${file_tex:r}.blg
     set file_dvi = ${file_tex:r}.dvi
     set file_log = ${file_tex:r}.log
+    set file_nav = ${file_tex:r}.nav
     set file_out = ${file_tex:r}.out
     set file_ps  = ${file_tex:r}.ps
+    set file_snm = ${file_tex:r}.snm
     set file_pdf = ${file_tex:r}.pdf
+    set file_toc = ${file_tex:r}.toc
 
     # intermediate files
     set list_intermediate = ( $file_aux $file_bbl $file_blg \
-				$file_dvi $file_log $file_out )
+				$file_dvi $file_log $file_nav \
+				$file_out $file_snm $file_toc )
 
     # all files
     set list_all_files = ( $list_intermediate $file_ps $file_pdf )
@@ -169,9 +173,12 @@ foreach file_tex ($list_files)
 	echo "#   blg file = $file_blg"
 	echo "#   dvi file = $file_dvi"
 	echo "#   log file = $file_log"
+	echo "#   nav file = $file_nav"
 	echo "#   out file = $file_out"
 	echo "#   ps  file = $file_ps"
+	echo "#   snm file = $file_snm"
 	echo "#   pdf file = $file_pdf"
+	echo "#   toc file = $file_toc"
     endif
 
     # removing intermediate files
