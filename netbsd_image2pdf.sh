@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2022/04/22 23:05:59 (CST) daisuke>
+# Time-stamp: <2022/04/24 09:56:59 (CST) daisuke>
 #
 
 #
@@ -12,6 +12,7 @@
 #  author: Kinoshita Daisuke
 #
 #  version 1.0: 22/Apr/2022
+#  version 1.1: 24/Apr/2022
 #
 
 #
@@ -216,7 +217,7 @@ do
         echo "# now, converting image '$file_each_image' to PDF..."
         echo "#  $file_each_image ==> $file_each_pdf"
     fi
-    command_makepdf="$convert $file_each_image $file_each_pdf"
+    command_makepdf="$convert $path_each_image $file_each_pdf"
     $command_makepdf
     if [ $verbosity -gt 0 ]
     then
