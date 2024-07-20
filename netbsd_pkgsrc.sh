@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/20 12:35:38 (UT+8) daisuke>
+# Time-stamp: <2024/07/20 19:50:43 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -314,7 +314,7 @@ check_existence () {
 #
 
 # command-line argument analysis
-while getopts "c:d:hr:s:" args
+while getopts "c:d:e:hm:r:s:v" args
 do
     case "$args" in
 	c)
