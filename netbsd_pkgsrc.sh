@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/20 12:10:47 (UT+8) daisuke>
+# Time-stamp: <2024/07/20 12:35:38 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -226,13 +226,10 @@ pkgsrc_clean () {
 	echo "#"
 	echo "# list of work directories to be cleaned:"
 	echo "#"
-    fi
-    for dir_work in $list_workdir
-    do
-        echo "#  $dir_work"
-    done
-    if [ $verbosity -gt 0 ]
-    then
+	for dir_work in $list_workdir
+	do
+            echo "#  $dir_work"
+	done
 	echo "#"
 	echo "# number of work directories to be cleaned = $n_dir"
 	echo "#"
