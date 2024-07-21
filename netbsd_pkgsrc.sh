@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/20 19:50:43 (UT+8) daisuke>
+# Time-stamp: <2024/07/21 08:12:39 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -287,8 +287,26 @@ print_parameters () {
     echo "#"
 }
 
-# function to check existence of directory
-check_existence () {
+# function to check existence of directory "dir_base"
+check_existence_dir_base () {
+    if [ ! -e $dir_base ]
+    then
+	echo "ERROR:"
+	echo "ERROR: directory \"$dir_base\" does not exist!"
+	echo "ERROR:"
+	exit 1
+    fi
+    if [ ! -d $dir_pkgsrc ]
+    then
+	echo "ERROR:"
+	echo "ERROR: \"$dir_base\" is not a directory!"
+	echo "ERROR:"
+	exit 1
+    fi
+}
+
+# function to check existence of directory "dir_pkgsrc"
+check_existence_dir_pkgsrc () {
     if [ ! -e $dir_pkgsrc ]
     then
 	echo "ERROR:"
@@ -361,7 +379,12 @@ shift $((OPTIND - 1))
 dir_pkgsrc=${dir_base}/pkgsrc
 
 # check existence of pkgsrc directory
-check_existence
+if [ $action = 'update' ] || [ $action = 'clean' ]
+then
+    check_existence_dir_pkgsrc
+else
+    check_existence_dir_base
+fi
 
 # if length of the first positional argument is zero, then stop
 if [ -z $1 ]
