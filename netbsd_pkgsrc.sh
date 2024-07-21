@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/21 08:12:39 (UT+8) daisuke>
+# Time-stamp: <2024/07/21 09:00:40 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -379,7 +379,7 @@ shift $((OPTIND - 1))
 dir_pkgsrc=${dir_base}/pkgsrc
 
 # check existence of pkgsrc directory
-if [ $action = 'update' ] || [ $action = 'clean' ]
+if [ $action = "update" ] || [ $action = "clean" ]
 then
     check_existence_dir_pkgsrc
 else
