@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/21 09:00:40 (UT+8) daisuke>
+# Time-stamp: <2024/07/21 09:02:15 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -378,14 +378,6 @@ shift $((OPTIND - 1))
 # pkgsrc directory
 dir_pkgsrc=${dir_base}/pkgsrc
 
-# check existence of pkgsrc directory
-if [ $action = "update" ] || [ $action = "clean" ]
-then
-    check_existence_dir_pkgsrc
-else
-    check_existence_dir_base
-fi
-
 # if length of the first positional argument is zero, then stop
 if [ -z $1 ]
 then
@@ -415,6 +407,14 @@ then
     echo "ERROR: value for \"action\" must be \"fetch\" or \"update\" or \"clean\"!"
     echo "ERROR:"
     exit 1
+fi
+
+# check existence of pkgsrc directory
+if [ $action = "update" ] || [ $action = "clean" ]
+then
+    check_existence_dir_pkgsrc
+else
+    check_existence_dir_base
 fi
 
 ###########################################################################
