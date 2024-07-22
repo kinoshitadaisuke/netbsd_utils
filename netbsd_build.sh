@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/22 13:33:47 (UT+8) daisuke>
+# Time-stamp: <2024/07/23 00:28:57 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -467,7 +467,10 @@ then
 	 
 	 echo "$command_build"
      else
+	 # command to be executed
 	 command_install="$file_buildsh $build_options -j $ncore install=/"
+	 # executing command
+	 $command_install
 	 # printing information
 	 if [ $verbosity -gt 0 ]
 	 then
