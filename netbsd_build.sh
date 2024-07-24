@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/23 00:52:44 (UT+8) daisuke>
+# Time-stamp: <2024/07/24 09:12:46 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -319,7 +319,7 @@ then
 	then
 	    # commands to be executed
 	    command_rename_obj="$mv ${dir_obj} ${dir_obj}.old"
-	    command_delete_obj="$rm -rf ${dir_obj}.old &"
+	    command_delete_obj="bg $rm -rf ${dir_obj}.old"
 	    command_make_obj="$mkdir ${dir_obj}"
 	    # executing commands
 	    $command_rename_obj
@@ -342,7 +342,7 @@ then
 	then
 	    # commands to be executed
 	    command_rename_tools="$mv ${dir_tools} ${dir_tools}.old"
-	    command_delete_tools="$rm -rf ${dir_tools}.old &"
+	    command_delete_tools="bg $rm -rf ${dir_tools}.old"
 	    command_make_tools="$mkdir ${dir_tools}"
 	    # executing commands
 	    $command_rename_tools
