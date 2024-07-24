@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/24 09:12:46 (UT+8) daisuke>
+# Time-stamp: <2024/07/24 09:18:42 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -319,12 +319,27 @@ then
 	then
 	    # commands to be executed
 	    command_rename_obj="$mv ${dir_obj} ${dir_obj}.old"
-	    command_delete_obj="bg $rm -rf ${dir_obj}.old"
+	    command_delete_obj="$rm -rf ${dir_obj}.old"
 	    command_make_obj="$mkdir ${dir_obj}"
+	    # printing status
+	    if [ $verbosity -gt 0 ]
+	    then
+		echo "#"
+		echo "# now deleting directory ${dir_obj}..."
+		echo "#  this may take a while..."
+		echo "#"
+	    fi
 	    # executing commands
 	    $command_rename_obj
 	    $command_delete_obj
 	    $command_make_obj
+	    # printing status
+	    if [ $verbosity -gt 0 ]
+	    then
+		echo "#"
+		echo "# finished deleting directory ${dir_obj}!"
+		echo "#"
+	    fi
 	    # printing information
 	    if [ $verbosity -gt 0 ]
 	    then
@@ -342,12 +357,27 @@ then
 	then
 	    # commands to be executed
 	    command_rename_tools="$mv ${dir_tools} ${dir_tools}.old"
-	    command_delete_tools="bg $rm -rf ${dir_tools}.old"
+	    command_delete_tools="$rm -rf ${dir_tools}.old"
 	    command_make_tools="$mkdir ${dir_tools}"
+	    # printing status
+	    if [ $verbosity -gt 0 ]
+	    then
+		echo "#"
+		echo "# now deleting directory ${dir_tools}..."
+		echo "#  this may take a while..."
+		echo "#"
+	    fi
 	    # executing commands
 	    $command_rename_tools
 	    $command_delete_tools
 	    $command_make_tools
+	    # printing status
+	    if [ $verbosity -gt 0 ]
+	    then
+		echo "#"
+		echo "# finished deleting directory ${dir_tools}!"
+		echo "#"
+	    fi
 	    # printing information
 	    if [ $verbosity -gt 0 ]
 	    then
