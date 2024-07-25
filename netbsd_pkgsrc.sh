@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Time-stamp: <2024/07/21 09:02:15 (UT+8) daisuke>
+# Time-stamp: <2024/07/25 20:47:32 (UT+8) daisuke>
 #
 
 ###########################################################################
@@ -15,6 +15,7 @@
 #   author: Kinoshita Daisuke
 #
 #   version 1.0: 20/Jul/2024
+#   version 1.1: 25/Jul/2024
 #
 ###########################################################################
 
@@ -296,7 +297,7 @@ check_existence_dir_base () {
 	echo "ERROR:"
 	exit 1
     fi
-    if [ ! -d $dir_pkgsrc ]
+    if [ ! -d $dir_base ]
     then
 	echo "ERROR:"
 	echo "ERROR: \"$dir_base\" is not a directory!"
